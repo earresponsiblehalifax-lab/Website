@@ -2,7 +2,7 @@
 
 A plain HTML, CSS, and JavaScript site for [earresponsible.ca](https://www.earresponsible.ca). There is no framework and no build step. GitHub Actions deploys it to GitHub Pages from the `main` branch.
 
-The preview is [https://earresponsiblehalifax-lab.github.io/website/](https://earresponsiblehalifax-lab.github.io/website/). After DNS cutover, the same files are served at the domain root.
+The preview is [https://earresponsiblehalifax-lab.github.io/Website/](https://earresponsiblehalifax-lab.github.io/Website/). The repository name is `Website`, and the lowercase `/website/` URL is not served. After DNS cutover, the same files are served at the domain root.
 
 ## Folder structure
 
@@ -37,7 +37,7 @@ python3 -m http.server 8080
 
 Then open [http://localhost:8080](http://localhost:8080).
 
-Links and assets are relative (`shop/`, `../css/styles.css`), so the same files work in a project subpath and at the domain root. The 404 page is the exception: GitHub serves it at the missing URL, which can be any depth, so a short script sets a `<base>` href. On `*.github.io` that base is the first path segment (`/website/`). On any other host, including the custom domain, it is `/`.
+Links and assets are relative (`shop/`, `../css/styles.css`), so the same files work in a project subpath and at the domain root. The 404 page is the exception: GitHub serves it at the missing URL, which can be any depth, so a short script sets a `<base>` href. On `*.github.io` that base is the first path segment (`/Website/` for this repo). On any other host, including the custom domain, it is `/`.
 
 ## Stripe and the contact form
 
@@ -50,7 +50,7 @@ window.EAR_RESPONSIBLE = {
 };
 ```
 
-1. **Stripe.** The Payment Link is already set. It sells Earplugs at $20.00 CAD, with $7 untracked Lettermail or $15 tracked Canada Post, and HST added at checkout. In the Stripe Dashboard, set the after-payment redirect to `https://earresponsiblehalifax-lab.github.io/website/thanks/` while previewing, and to `https://www.earresponsible.ca/thanks/` at cutover. Changing the link later is one edit in `js/config.js`; `js/site.js` copies it onto every Buy button.
+1. **Stripe.** The Payment Link is already set. It sells Earplugs at $20.00 CAD, with $7 untracked Lettermail or $15 tracked Canada Post, and HST added at checkout. In the Stripe Dashboard, set the after-payment redirect to `https://earresponsiblehalifax-lab.github.io/Website/thanks/` while previewing, and to `https://www.earresponsible.ca/thanks/` at cutover. Changing the link later is one edit in `js/config.js`; `js/site.js` copies it onto every Buy button.
 2. **Formspree.** There is no form endpoint yet. `formspreeEndpoint` is still the placeholder, and the contact form does not post to it. Submitting the form opens a pre-filled email to `earresponsiblehalifax@gmail.com`. When a real Formspree URL is pasted into `js/config.js`, the form posts there instead. Update the privacy page at the same time so it describes that service.
 
 ## How to edit copy
