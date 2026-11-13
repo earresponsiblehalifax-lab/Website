@@ -414,11 +414,12 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
 
 .claim-num {
   margin: 0.1em 0 0;
-  font-size: clamp(4.4rem, 18vw, 9.5rem);
+  font-size: clamp(3.15rem, 13vw, 7.6rem);
   font-weight: 600;
-  line-height: 0.85;
-  letter-spacing: -0.05em;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   color: var(--text);
+  white-space: nowrap;
 }
 
 .claim-num span {
@@ -485,11 +486,7 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "a b"
-    "a d"
-    "c c";
+  grid-template-columns: 1fr;
   gap: 0.55rem;
 }
 
@@ -500,11 +497,6 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   background: var(--bg-2);
 }
 
-.gallery-grid figure:nth-child(1) { grid-area: a; }
-.gallery-grid figure:nth-child(2) { grid-area: b; }
-.gallery-grid figure:nth-child(3) { grid-area: d; }
-.gallery-grid figure:nth-child(4) { grid-area: c; }
-
 .gallery-grid img {
   width: 100%;
   height: auto;
@@ -512,44 +504,26 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   display: block;
 }
 
-.gallery-grid .tall {
-  display: flex;
-  min-height: 0;
-}
-
-.gallery-grid .tall img {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: auto;
-}
-
+.gallery-grid .tall img { aspect-ratio: 4 / 5; }
 .gallery-grid .wide img { aspect-ratio: 3 / 2; }
-
-/* Full-width tree photo on small screens */
-.gallery-grid figure:nth-child(4) img {
-  aspect-ratio: 4 / 3;
-  height: auto;
-  flex: none;
-}
 
 @media (min-width: 800px) {
   .gallery-grid {
-    grid-template-columns: 1.05fr 1.3fr 1.05fr;
-    grid-template-areas:
-      "a b c"
-      "a d c";
+    grid-template-columns: 0.82fr 1.18fr;
     gap: 0.7rem;
+    align-items: stretch;
   }
-  .gallery-grid figure:nth-child(4) {
+  .gallery-grid figure {
     display: flex;
     min-height: 0;
   }
-  .gallery-grid figure:nth-child(4) img {
-    aspect-ratio: auto;
+  .gallery-grid .tall img,
+  .gallery-grid .wide img {
     flex: 1;
     height: 100%;
+    min-height: 28rem;
+    max-height: 40rem;
+    aspect-ratio: auto;
   }
 }
 
@@ -776,6 +750,15 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   padding: 0 1.15rem 1.15rem;
   color: var(--text);
   font-weight: 300;
+}
+
+.faq-list details > ul:not(summary) {
+  margin: 0;
+  padding: 0 1.15rem 0.35rem 2.4rem;
+}
+
+.faq-list details > ul + p {
+  padding-top: 0.15rem;
 }
 
 /* ---------- Contact ---------- */
