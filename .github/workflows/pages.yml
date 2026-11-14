@@ -25,6 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Confirm CNAME is in the published files
+        run: |
+          printf '%s\n' 'www.earresponsible.ca' | cmp -s - CNAME
+          tar -cf "$RUNNER_TEMP/pages-check.tar" --exclude=.git --exclude=.github .
+          tar -tf "$RUNNER_TEMP/pages-check.tar" | grep -qx './CNAME'
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
