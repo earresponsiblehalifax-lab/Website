@@ -2,7 +2,7 @@
 
 A plain HTML, CSS, and JavaScript site for [earresponsible.ca](https://www.earresponsible.ca). There is no framework and no build step. GitHub Actions deploys it to GitHub Pages from the `main` branch.
 
-The preview is [https://earresponsiblehalifax-lab.github.io/Website/](https://earresponsiblehalifax-lab.github.io/Website/). The repository name is `Website`, and the lowercase `/website/` URL is not served. After DNS cutover, the same files are served at the domain root.
+The live site is [https://www.earresponsible.ca/](https://www.earresponsible.ca/). Pages also serves [https://earresponsiblehalifax-lab.github.io/Website/](https://earresponsiblehalifax-lab.github.io/Website/) until the custom domain redirect takes over. The repository name is `Website`, and the lowercase `/website/` URL is not served.
 
 ## Folder structure
 
@@ -22,10 +22,11 @@ js/site.js              Menu, Buy buttons, form fallback, photo switcher
 fonts/outfit-latin.woff2
 assets/                 Compressed photos, logo, favicon
 .nojekyll               Stops GitHub Pages running Jekyll
+CNAME                   www.earresponsible.ca
 .github/workflows/pages.yml
 ```
 
-There is no `CNAME` file yet. Add one at cutover (see below).
+`CNAME` contains `www.earresponsible.ca`. The Pages workflow checks that this file is in the uploaded artifact.
 
 ## Preview on your computer
 
@@ -50,7 +51,7 @@ window.EAR_RESPONSIBLE = {
 };
 ```
 
-1. **Stripe.** The Payment Link is already set. It sells Earplugs at $20.00 CAD, with $7 untracked Lettermail or $15 tracked Canada Post, and HST added at checkout. In the Stripe Dashboard, set the after-payment redirect to `https://earresponsiblehalifax-lab.github.io/Website/thanks/` while previewing, and to `https://www.earresponsible.ca/thanks/` at cutover. Changing the link later is one edit in `js/config.js`; `js/site.js` copies it onto every Buy button.
+1. **Stripe.** The Payment Link is already set. It sells Earplugs at $20.00 CAD, with $7 untracked Lettermail or $15 tracked Canada Post, and HST added at checkout. In the Stripe Dashboard, set the after-payment redirect to `https://www.earresponsible.ca/thanks/`. Changing the link later is one edit in `js/config.js`; `js/site.js` copies it onto every Buy button.
 2. **Formspree.** There is no form endpoint yet. `formspreeEndpoint` is still the placeholder, and the contact form does not post to it. Submitting the form opens a pre-filled email to `earresponsiblehalifax@gmail.com`. When a real Formspree URL is pasted into `js/config.js`, the form posts there instead. Update the privacy page at the same time so it describes that service.
 
 ## How to edit copy
@@ -65,17 +66,11 @@ The files in `assets/` are the compressed web versions. To swap a photo, keep th
 
 Pushes to `main` run `.github/workflows/pages.yml`, which uploads this folder and deploys it with GitHub Pages. Pages itself must be set to **GitHub Actions** as the source (the repo’s Pages setting, not a branch). No Jekyll build runs (`.nojekyll`).
 
-## CNAME and going live
+## Custom domain
 
-**Do not add a `CNAME` file, and do not turn on a custom domain in GitHub Pages, until DNS cutover.** A `CNAME` of `www.earresponsible.ca` would make the `github.io` preview redirect to the domain while it still points at Squarespace.
+`CNAME` is `www.earresponsible.ca`, and that is the Pages custom domain. Internal links are relative, so they resolve at the domain root (`/shop/`, `/thanks/`) rather than under `/Website/`. Canonical URLs already use `https://www.earresponsible.ca/…`. There is no sitemap.
 
-At cutover:
-
-1. Add a `CNAME` file at the repo root containing exactly `www.earresponsible.ca`.
-2. Lower TTLs in Google Cloud DNS, then point the apex A/AAAA records at GitHub Pages and `www` CNAME at `earresponsiblehalifax-lab.github.io`.
-3. Set the custom domain in the repo’s Pages settings and turn on “Enforce HTTPS” once GitHub issues the certificate.
-4. Complete a real $20 test purchase on the live domain and refund it.
-5. Only then cancel Squarespace. The domain stays at Tucows/OpenSRS.
+DNS for the apex should be GitHub’s Pages A/AAAA records, and `www` should be a CNAME to `earresponsiblehalifax-lab.github.io`. Turn on “Enforce HTTPS” in the repo’s Pages settings once GitHub has issued the certificate. Then do a real $20 test purchase and refund it before cancelling Squarespace. The domain stays at Tucows/OpenSRS.
 
 ## What this site does not do
 
