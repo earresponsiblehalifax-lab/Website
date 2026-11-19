@@ -338,6 +338,108 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   }
 }
 
+/* ---------- HOLIDAY SALE (delete this block after Dec 23, 2026) ---------- */
+
+.holiday-sale {
+  --sale: #ff6b5a; /* 7:1 on --bg */
+  padding-top: calc(var(--header-h) + 1.15rem);
+  padding-bottom: clamp(1.35rem, 4vw, 2.8rem);
+}
+
+.holiday-sale-grid {
+  display: grid;
+  gap: 1.35rem;
+  align-items: start;
+}
+
+.holiday-sale-copy .eyebrow {
+  margin-bottom: 0.55rem;
+}
+
+.holiday-sale h2 {
+  margin: 0 0 0.45em;
+  font-size: clamp(1.85rem, 6.6vw, 3.35rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.holiday-sale-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  margin: 0 0 0.35rem;
+  line-height: 1;
+}
+
+.holiday-sale-was {
+  color: var(--muted);
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-decoration: line-through;
+  text-decoration-thickness: 0.08em;
+}
+
+.holiday-sale-now {
+  color: var(--sale);
+  font-size: clamp(1.7rem, 4.2vw, 2.2rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.holiday-sale-hst {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.holiday-sale-ends {
+  margin: 0 0 1.15rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.holiday-sale-photo {
+  display: block;
+  max-width: 32rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--bg-2);
+}
+
+.holiday-sale-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.holiday-sale a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (min-width: 800px) {
+  .holiday-sale {
+    padding-top: calc(var(--header-h) + 1.75rem);
+    padding-bottom: clamp(2rem, 5vw, 3.25rem);
+  }
+
+  .holiday-sale-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+
+  .holiday-sale-photo {
+    max-width: none;
+    justify-self: end;
+    width: 100%;
+  }
+}
+
 /* ---------- Hero ---------- */
 
 .hero {

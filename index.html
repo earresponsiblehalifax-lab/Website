@@ -43,6 +43,32 @@
     </div>
   </header>
   <main id="content">
+    <!--
+      HOLIDAY SALE — delete this whole section after Dec 23, 2026.
+      Also delete the matching HOLIDAY SALE block in css/styles.css.
+      These links are not .js-buy, so they keep the sale Stripe link
+      instead of the regular $20 payment link.
+    -->
+    <section class="holiday-sale" aria-labelledby="holiday-sale-heading">
+      <div class="wrap holiday-sale-grid">
+        <div class="holiday-sale-copy">
+          <p class="eyebrow">Black Friday + Holiday Sale</p>
+          <h2 id="holiday-sale-heading">25% off every pair</h2>
+          <p class="holiday-sale-price">
+            <s class="holiday-sale-was"><span class="visually-hidden">Was </span>$20.00</s>
+            <span class="holiday-sale-now"><span class="visually-hidden">Now </span>$15.00</span>
+            <span class="holiday-sale-hst">+ HST</span>
+          </p>
+          <p class="holiday-sale-ends">Sale ends Dec 23</p>
+          <a class="btn btn-accent" href="https://buy.stripe.com/dRm7sMb3gccOa2xgWG3F601">Shop the sale</a>
+        </div>
+        <a class="holiday-sale-photo" href="https://buy.stripe.com/dRm7sMb3gccOa2xgWG3F601">
+          <img src="assets/holiday-sale.jpg" width="1080" height="1080" alt="Holiday sale graphic of the Ear Responsible earplug case on moss. It reads 25% off every pair, $15 a pair plus HST, was $20, ends December 23." fetchpriority="high">
+        </a>
+      </div>
+    </section>
+    <!-- /HOLIDAY SALE -->
+
     <section class="hero" aria-label="Featured">
       <img class="hero-img" src="assets/hero.jpg" width="1918" height="1280" alt="A black Ear Responsible keychain case and several clear earplugs sitting in a speaker cone." fetchpriority="high">
       <div class="hero-content wrap">
