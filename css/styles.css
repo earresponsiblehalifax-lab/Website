@@ -338,12 +338,18 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   }
 }
 
-/* ---------- HOLIDAY SALE (delete this block after Dec 23, 2026) ---------- */
+/* ---------- BLACK FRIDAY SALE (delete this block after Nov 30, 2026) ---------- */
+/* Hidden unless the head script adds sale-live during the sale window. */
 
 .holiday-sale {
   --sale: #ff6b5a; /* 7:1 on --bg */
+  display: none;
   padding-top: calc(var(--header-h) + 1.15rem);
   padding-bottom: clamp(1.35rem, 4vw, 2.8rem);
+}
+
+html.sale-live .holiday-sale {
+  display: block;
 }
 
 .holiday-sale-grid {

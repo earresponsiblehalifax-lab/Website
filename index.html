@@ -17,6 +17,34 @@
   <meta property="og:image" content="https://www.earresponsible.ca/assets/hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/styles.css">
+  <!--
+    BLACK FRIDAY SALE — delete this script with the banner after Nov 30, 2026.
+    The banner stays hidden unless the clock is inside the sale window, so it
+    does not flash in before Nov 23. America/Halifax is UTC−4 on these dates.
+  -->
+  <script>
+  (function () {
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Halifax",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(new Date());
+    var get = function (type) {
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].type === type) return parts[i].value;
+      }
+      return "";
+    };
+    var stamp = get("year") + get("month") + get("day") + get("hour") + get("minute");
+    if (stamp >= "202611230000" && stamp <= "202611302359") {
+      document.documentElement.classList.add("sale-live");
+    }
+  })();
+  </script>
   <script src="js/config.js"></script>
   <script src="js/site.js" defer></script>
 </head>
@@ -44,30 +72,30 @@
   </header>
   <main id="content">
     <!--
-      HOLIDAY SALE — delete this whole section after Dec 23, 2026.
-      Also delete the matching HOLIDAY SALE block in css/styles.css.
+      BLACK FRIDAY SALE — delete this whole section after Nov 30, 2026.
+      Also delete the matching block in css/styles.css and the script in the head.
       These links are not .js-buy, so they keep the sale Stripe link
       instead of the regular $20 payment link.
     -->
     <section class="holiday-sale" aria-labelledby="holiday-sale-heading">
       <div class="wrap holiday-sale-grid">
         <div class="holiday-sale-copy">
-          <p class="eyebrow">Black Friday + Holiday Sale</p>
+          <p class="eyebrow">Black Friday Sale</p>
           <h2 id="holiday-sale-heading">25% off every pair</h2>
           <p class="holiday-sale-price">
             <s class="holiday-sale-was"><span class="visually-hidden">Was </span>$20.00</s>
             <span class="holiday-sale-now"><span class="visually-hidden">Now </span>$15.00</span>
             <span class="holiday-sale-hst">+ HST</span>
           </p>
-          <p class="holiday-sale-ends">Sale ends Dec 23</p>
+          <p class="holiday-sale-ends">Sale ends Nov 30</p>
           <a class="btn btn-accent" href="https://buy.stripe.com/dRm7sMb3gccOa2xgWG3F601">Shop the sale</a>
         </div>
         <a class="holiday-sale-photo" href="https://buy.stripe.com/dRm7sMb3gccOa2xgWG3F601">
-          <img src="assets/holiday-sale.jpg" width="1080" height="1080" alt="Holiday sale graphic of the Ear Responsible earplug case on moss. It reads 25% off every pair, $15 a pair plus HST, was $20, ends December 23." fetchpriority="high">
+          <img src="assets/holiday-sale.jpg" width="1080" height="1080" alt="Black Friday sale graphic of the Ear Responsible earplug case on moss. It reads Black Friday Sale, 25% off every pair, $15 a pair plus HST, was $20, ends November 30.">
         </a>
       </div>
     </section>
-    <!-- /HOLIDAY SALE -->
+    <!-- /BLACK FRIDAY SALE -->
 
     <section class="hero" aria-label="Featured">
       <img class="hero-img" src="assets/hero.jpg" width="1918" height="1280" alt="A black Ear Responsible keychain case and several clear earplugs sitting in a speaker cone." fetchpriority="high">
